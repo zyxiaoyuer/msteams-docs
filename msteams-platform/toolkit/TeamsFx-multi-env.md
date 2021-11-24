@@ -185,60 +185,7 @@ As the Teams app manifest template is shared across all environments, we can upd
     ...
   }
 
-### Example 4: customize different web app sku for different environment
-
-In this example, you will learn how to set the sku of simple auth to `D1` for the default environment `dev` and `S1` for the staging environment `staging`.
-
-Steps to do the customization:
-
-- Step 1: open config file `.fx/configs/azure.parameters.dev.json`.
-- Step 2: add parameter `simpleAuth_sku` and set the value to `D1`.
-  
-  Updates to `.fx/configs/azure.parameters.dev.json`:
-
-  ```json
-  {
-    "$schema": https://schema.management.azure.com/schemas/2019-04-01/  deploymentParameters.json#,
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-      ...
-      "simpleAuth_sku": {
-        "value": "D1"
-      }
-      ...
-    }
-  }
-
-- Step 3: create a new environment named `staging` if it doesn't exist.
-- Step 4: open config file `.fx/configs/azure.parameters.staging.json`.
-- Step 5: add parameter `simpleAuth_sku` and set the value to `D1`.
-
-After this is done, the web app for `simpleAuth` will be provisioned as `D1` sku under `dev` environment and `S1` sku under `staging` environment.
-
-All the predefined parameters for `azure.parameters.<env>.json` can be found in `templates/azure/main.bicep`. You can also define new parameter in `templates/azure/main.bicep` and set particular value of the parameter for different environment.
-
-### Example 5: customize web app sku for all environments
-
-In this example, you will learn how to set the sku of simple auth to `D1` for all environments.
-
-The BICEP template is shared across all environments, we can update the sku value in BICEP template directly for our target.
-
-Steps to do the customization:
-
-- Step 1: open BICEP template file `templates/azure/main.bicep`.
-- Step 2: update the value of `simpleAuth_sku` from `F1` to `D1`:
-
-  Updates to `templates/azure/main.bicep`:
-
-  ```bicep
-  ...
-  param simpleAuth_sku string = 'D1'
-  ...
-  ```
-
-After this, the web app for `simpleAuth` will be provisioned as `D1` sku for all environments.
-
-For more details about BICEP template and parameter files, please refer to [Provision cloud resources](provision.md)
+For examples to customize Azure Resources for different envrionment, such like specifying the name of Function App instance, please refer to [Provision cloud resources](provision.md#example-specifying-the-name-of-function-app-instance).
 
 ## See also
 
