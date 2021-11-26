@@ -106,6 +106,7 @@ Steps to do the customization:
 - Step 3: create new environment named `staging` if it doesn't exist.
 - Step 4: open config file `.fx/configs/config.staging.json`.
 - Step 5: update the same property of step 2 to `myapp(staging)`.
+- Step 6: run provision command against `dev` and `staging` environment to update the app name in remote environments. For how to run provision command with Teams Toolkit, you can refer to [this document](provision.md#provision-using-teams-toolkit) for more details.
 
 ### Example 2: customize Teams App description for different environment
 
@@ -117,7 +118,7 @@ In this example, you will learn how to set different Teams App description for d
 Steps to do the customization:
 
 - Step 1: open config file `.fx/configs/config.dev.json`.
-- Step 2: update the property of *manifest > description > short* to `my app description for dev`.
+- Step 2: add a new property of *manifest > description > short* with value `my app description for dev`.
 
   Updates to `.fx/configs/config.dev.json`
 
@@ -138,7 +139,7 @@ Steps to do the customization:
 
 - Step 3: create a new environment named `staging` if it doesn't exist.
 - Step 4: open config file `.fx/configs/config.staging.json`.
-- Step 5: update the same property of step 2 to `my app description for staging`.
+- Step 5: add the same property of step 2 to `my app description for staging`.
 - **Step 6**: open Teams app manifest template for remote `templates/appPackage/manifest.remote.template.json`.
 - **Step 7**: update the property `description > short` to use the **variable** defined in config files with mustache syntax `{{config.manifest.description.short}}`.
   
@@ -157,6 +158,9 @@ Steps to do the customization:
     ...
   }
   ```
+
+- Step 8: run provision command against `dev` and `staging` environment to update the app name in remote environments. For how to run provision command with Teams Toolkit, you can refer to [this document](provision.md#provision-using-teams-toolkit) for more details.
+
 
 ### Example 3: customize Teams App description for all environments
 
@@ -181,6 +185,8 @@ As the Teams app manifest template is shared across all environments, we can upd
     },
     ...
   }
+
+- Step 3: run provision command against **all** environment to update the app name in remote environments. For how to run provision command with Teams Toolkit, you can refer to [this document](provision.md#provision-using-teams-toolkit) for more details.
 
 ### Example 4: customize Azure resources for different environment
 
